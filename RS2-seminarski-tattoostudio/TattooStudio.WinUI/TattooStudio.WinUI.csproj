@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TattooStudio.WinUI</RootNamespace>
+    <AssemblyName>TattooStudio.WinUI</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Flurl, Version=3.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.3.0.3\lib\net472\Flurl.dll</HintPath>
+    </Reference>
+    <Reference Include="Flurl.Http, Version=3.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Flurl.Http.3.2.1\lib\net472\Flurl.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="APIService.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Izvjestaj\frmIzvjestajDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaj\frmIzvjestajDetalji.Designer.cs">
+      <DependentUpon>frmIzvjestajDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvjestaj\frmPrikazIzvjestaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaj\frmPrikazIzvjestaja.Designer.cs">
+      <DependentUpon>frmPrikazIzvjestaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Izvjestaj\frmTipIzvjestaja.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Izvjestaj\frmTipIzvjestaja.Designer.cs">
+      <DependentUpon>frmTipIzvjestaja.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Klijent\frmPrikazKlijenata.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Klijent\frmPrikazKlijenata.Designer.cs">
+      <DependentUpon>frmPrikazKlijenata.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmPocetna.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmPocetna.Designer.cs">
+      <DependentUpon>frmPocetna.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmHomePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmHomePage.Designer.cs">
+      <DependentUpon>frmHomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmPrijava.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmPrijava.Designer.cs">
+      <DependentUpon>frmPrijava.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmRegistracija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmRegistracija.Designer.cs">
+      <DependentUpon>frmRegistracija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmUposlenikDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginRegistracija\frmUposlenikDetalji.Designer.cs">
+      <DependentUpon>frmUposlenikDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Narudzba\frmNarudzbaDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Narudzba\frmNarudzbaDetalji.Designer.cs">
+      <DependentUpon>frmNarudzbaDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Narudzba\frmPrikazNarudzbi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Narudzba\frmPrikazNarudzbi.Designer.cs">
+      <DependentUpon>frmPrikazNarudzbi.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Obavijest\frmObavijestDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Obavijest\frmObavijestDetalji.Designer.cs">
+      <DependentUpon>frmObavijestDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Obavijest\frmPrikazObavijesti.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Obavijest\frmPrikazObavijesti.Designer.cs">
+      <DependentUpon>frmPrikazObavijesti.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio\frmPrikazPortfolija.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Portfolio\frmPrikazPortfolija.Designer.cs">
+      <DependentUpon>frmPrikazPortfolija.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Portfolio\frmStavkaDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Portfolio\frmStavkaDetalji.Designer.cs">
+      <DependentUpon>frmStavkaDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Proizvod\frmPrikazProizvoda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proizvod\frmPrikazProizvoda.Designer.cs">
+      <DependentUpon>frmPrikazProizvoda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Proizvod\frmProizvodDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Proizvod\frmProizvodDetalji.Designer.cs">
+      <DependentUpon>frmProizvodDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Termin\frmOdobriTermin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Termin\frmOdobriTermin.Designer.cs">
+      <DependentUpon>frmOdobriTermin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Termin\frmOtkaziTermin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Termin\frmOtkaziTermin.Designer.cs">
+      <DependentUpon>frmOtkaziTermin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Termin\frmPrikazTermina.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Termin\frmPrikazTermina.Designer.cs">
+      <DependentUpon>frmPrikazTermina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Termin\frmTerminDetalji.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Termin\frmTerminDetalji.Designer.cs">
+      <DependentUpon>frmTerminDetalji.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Validator.cs" />
+    <EmbeddedResource Include="Izvjestaj\frmIzvjestajDetalji.resx">
+      <DependentUpon>frmIzvjestajDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvjestaj\frmPrikazIzvjestaja.resx">
+      <DependentUpon>frmPrikazIzvjestaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Izvjestaj\frmTipIzvjestaja.resx">
+      <DependentUpon>frmTipIzvjestaja.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Klijent\frmPrikazKlijenata.resx">
+      <DependentUpon>frmPrikazKlijenata.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginRegistracija\frmPocetna.resx">
+      <DependentUpon>frmPocetna.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginRegistracija\frmHomePage.resx">
+      <DependentUpon>frmHomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginRegistracija\frmPrijava.resx">
+      <DependentUpon>frmPrijava.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginRegistracija\frmRegistracija.resx">
+      <DependentUpon>frmRegistracija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginRegistracija\frmUposlenikDetalji.resx">
+      <DependentUpon>frmUposlenikDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Narudzba\frmNarudzbaDetalji.resx">
+      <DependentUpon>frmNarudzbaDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Narudzba\frmPrikazNarudzbi.resx">
+      <DependentUpon>frmPrikazNarudzbi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Obavijest\frmObavijestDetalji.resx">
+      <DependentUpon>frmObavijestDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Obavijest\frmPrikazObavijesti.resx">
+      <DependentUpon>frmPrikazObavijesti.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portfolio\frmPrikazPortfolija.resx">
+      <DependentUpon>frmPrikazPortfolija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Portfolio\frmStavkaDetalji.resx">
+      <DependentUpon>frmStavkaDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proizvod\frmPrikazProizvoda.resx">
+      <DependentUpon>frmPrikazProizvoda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Proizvod\frmProizvodDetalji.resx">
+      <DependentUpon>frmProizvodDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Termin\frmOdobriTermin.resx">
+      <DependentUpon>frmOdobriTermin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Termin\frmOtkaziTermin.resx">
+      <DependentUpon>frmOtkaziTermin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Termin\frmPrikazTermina.resx">
+      <DependentUpon>frmPrikazTermina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Termin\frmTerminDetalji.resx">
+      <DependentUpon>frmTerminDetalji.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TattooStudio.Model\TattooStudio.Model.csproj">
+      <Project>{233987c4-538c-4bcf-ab81-5905cd1acba2}</Project>
+      <Name>TattooStudio.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

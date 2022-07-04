@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "ydxnFZxCAHdScuc7FwZDLQ+cqtuPNHi2NPNdK+3LB+rgLufTuv07jSyqsKhaocc8l0eZYvCXvKZWtjupsyLJqw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\user\\Desktop\\RS2-seminarski-tattoostudio\\TattooStudio.Model\\TattooStudio.Model.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\user\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\user\\.nuget\\packages\\system.componentmodel.annotations\\4.4.1\\system.componentmodel.annotations.4.4.1.nupkg.sha512"
+  ],
+  "logs": []
+}

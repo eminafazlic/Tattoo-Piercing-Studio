@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RS2-seminarski-tattoostudio", "RS2-seminarski-tattoostudio\RS2-seminarski-tattoostudio.csproj", "{E9B5FE94-D922-4821-9C5C-F5E4099D6D7E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TattooStudio.Model", "TattooStudio.Model\TattooStudio.Model.csproj", "{233987C4-538C-4BCF-AB81-5905CD1ACBA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{A857B8DF-DC0A-4039-BD97-0270E3311091}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TattooStudio.WinUI", "TattooStudio.WinUI\TattooStudio.WinUI.csproj", "{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9B5FE94-D922-4821-9C5C-F5E4099D6D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9B5FE94-D922-4821-9C5C-F5E4099D6D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9B5FE94-D922-4821-9C5C-F5E4099D6D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9B5FE94-D922-4821-9C5C-F5E4099D6D7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{233987C4-538C-4BCF-AB81-5905CD1ACBA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{233987C4-538C-4BCF-AB81-5905CD1ACBA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{233987C4-538C-4BCF-AB81-5905CD1ACBA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{233987C4-538C-4BCF-AB81-5905CD1ACBA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B6E9C23-C17C-43A6-B8AE-598FFC7B35E4} = {A857B8DF-DC0A-4039-BD97-0270E3311091}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3894BCED-F242-43EC-93D8-AE7A570933CA}
+	EndGlobalSection
+EndGlobal

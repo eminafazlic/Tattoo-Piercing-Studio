@@ -1,0 +1,81 @@
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.WinUI.exe.config
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.WinUI.exe
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.WinUI.pdb
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.dll
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.Http.dll
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.pdb
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.xml
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.Http.pdb
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.Http.xml
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csprojAssemblyReference.cache
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Klijent.frmPrikazKlijenata.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Properties.Resources.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csproj.GenerateResource.cache
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csproj.CopyComplete
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.exe
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.pdb
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.Model.dll
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.Model.pdb
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.frmPocetna.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Proizvod.frmPrikazProizvoda.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Proizvod.frmProizvodDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmHomePage.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmPrijava.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmRegistracija.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Izvjestaj.frmIzvjestajDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Izvjestaj.frmPrikazIzvjestaja.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Obavijest.frmObavijestDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Obavijest.frmPrikazObavijesti.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmUposlenikDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Narudzba.frmPrikazNarudzbi.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Narudzba.frmNarudzbaDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Portfolio.frmPrikazPortfolija.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Portfolio.frmStavkaDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmOdobriTermin.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmPrikazTermina.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmTerminDetalji.resources
+C:\Users\user\Desktop\FIT\RSII seminarski\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmOtkaziTermin.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.WinUI.exe.config
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.WinUI.exe
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.WinUI.pdb
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.dll
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.Http.dll
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Newtonsoft.Json.dll
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.Model.dll
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\TattooStudio.Model.pdb
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.pdb
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.xml
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.Http.pdb
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Flurl.Http.xml
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\bin\Debug\Newtonsoft.Json.xml
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csprojAssemblyReference.cache
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Izvjestaj.frmIzvjestajDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Izvjestaj.frmPrikazIzvjestaja.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Klijent.frmPrikazKlijenata.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.frmPocetna.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmHomePage.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmPrijava.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmRegistracija.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.LoginRegistracija.frmUposlenikDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Narudzba.frmNarudzbaDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Narudzba.frmPrikazNarudzbi.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Obavijest.frmObavijestDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Obavijest.frmPrikazObavijesti.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Portfolio.frmPrikazPortfolija.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Portfolio.frmStavkaDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Proizvod.frmPrikazProizvoda.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Proizvod.frmProizvodDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Properties.Resources.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmOdobriTermin.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmOtkaziTermin.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmPrikazTermina.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Termin.frmTerminDetalji.resources
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csproj.GenerateResource.cache
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.csproj.CopyComplete
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.exe
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.pdb
+C:\Users\user\Desktop\RS2-seminarski-tattoostudio\TattooStudio.WinUI\obj\Debug\TattooStudio.WinUI.Izvjestaj.frmTipIzvjestaja.resources
