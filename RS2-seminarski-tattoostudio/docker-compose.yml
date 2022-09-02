@@ -30,5 +30,4 @@ services:
       
 networks:
   tattoostudionet:
-    driver: bridge
-    external: true      
+    driver: bridge 
