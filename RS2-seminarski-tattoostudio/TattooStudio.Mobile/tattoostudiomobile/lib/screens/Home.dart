@@ -32,7 +32,7 @@ class _HomeState extends State<Home> {
                 Navigator.of(context).pushNamed('/detaljiTermina');
               }),
           ListTile(
-              title: Text('Narudžbe'),
+              title: Text('Korpa'),
               onTap: () {
                 Navigator.of(context).pushNamed('/narudzbe');
               }),

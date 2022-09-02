@@ -75,7 +75,7 @@ namespace TattooStudio.WinUI.LoginRegistracija
                     uposlenik.Slika = stream.ToArray();
                     Global.prijavljeniUposlenik = await _uposlenikService.Insert<Uposlenik>(uposlenik);
                     Close();
-                    frmPocetna frm = new frmPocetna();
+                    frmPrijava frm = new frmPrijava();
                     frm.Show();
                 }
                 catch(Exception ex)
@@ -93,7 +93,13 @@ namespace TattooStudio.WinUI.LoginRegistracija
         private bool ValidirajUnos()
         {
             return Validator.ObaveznoPolje(txtIme, err, Validator.poruka) &&
+                Validator.MinDuzina(txtIme, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtIme, err, 20, Validator.minDuzina) &&
+                //Validator.SamoSlova(txtIme, err, Validator.samoSlova) &&
                 Validator.ObaveznoPolje(txtPrezime, err, Validator.poruka) &&
+                Validator.MinDuzina(txtPrezime, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtPrezime, err, 30, Validator.minDuzina) &&
+                //Validator.SamoSlova(txtPrezime, err, Validator.samoSlova) &&
                 Validator.ObaveznoPolje(txtKorisnickoIme, err, Validator.poruka) &&
                 Validator.ObaveznoPolje(txtLozinka, err, Validator.poruka) &&
                 Validator.ObaveznoPolje(txtPotvrdaLozinke, err, Validator.poruka) &&

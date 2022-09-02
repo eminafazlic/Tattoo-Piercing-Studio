@@ -27,8 +27,8 @@ namespace RS2_seminarski_tattoostudio.Controllers
         private Token stripeToken;
         private TokenService Tokenservice;
 
-        private string StripePublishableApiKey = "pk_test_51KHCfLKRDUcIdarPfWjv1ZqwVDuKGgtd4bYviOunkt7XhtCLraqnotJenARYF733rIGY87lHizALkgdQ3i17zi5S00OumoDJjK";
-        private string StripeSecretApiKey = "sk_test_51KHCfLKRDUcIdarPZRvw4oXWN2CxEaUkbvynLqsI74RJXtIK5gtgrioWFAXM0zPgTxlnRlpgaMyGb59oTn5x6xW100FocD0BTS";
+        private string StripePublishableApiKey = "";
+        private string StripeSecretApiKey = "";
 
         public bool IsTransactionSuccess { get; set; }
 

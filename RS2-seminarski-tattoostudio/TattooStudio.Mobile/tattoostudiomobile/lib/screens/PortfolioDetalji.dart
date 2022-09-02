@@ -1,21 +1,36 @@
+
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tattoostudiomobile/model/Portfolio.dart';
+import 'package:tattoostudiomobile/model/StavkePortfolija.dart';
 import 'package:tattoostudiomobile/model/Uposlenici.dart';
 import 'package:tattoostudiomobile/providers/apiservice.dart';
 import 'package:tattoostudiomobile/screens/DetaljiStavkePortfolija.dart';
 
-//prikazati podatke artista i slike njegovih radova tj sve stavke njegovog portfolija
+import 'DetaljiProizvoda.dart';
 
-
-class PortfolioDetalji extends StatefulWidget {
+class PortfolioDetalji extends StatelessWidget {
   final Uposlenici? uposlenik;
-  const PortfolioDetalji({Key? key, this.uposlenik}) : super(key: key);
+  PortfolioDetalji({ Key? key, this.uposlenik }) : super(key: key);
 
-  @override
-  _PortfolioDetaljiState createState() => _PortfolioDetaljiState();
-}
+  List<dynamic>? _stavkePortfolija = [];
+  Portfolio? _portfolio;
+  Future<List<dynamic>?> getStavkePortfolija() async {
+    var portfolio = await APIService.GetById("Portfolio", uposlenik!.uposlenikId, "UposlenikId=${uposlenik!.uposlenikId}");
+    portfolio!.map((i)=>Portfolio.fromJson(i));
+    if(portfolio.isNotEmpty) {
+      _portfolio = new Portfolio.fromJson(portfolio[0]);
+      var stavke = await APIService.GetById("StavkePortfolium", _portfolio!.portfolioId, "PortfolioId=${_portfolio!.portfolioId}");
+      if(stavke.isNotEmpty) {
+        stavke!.map((i)=>StavkePortfolija.fromJson(i)).toList();
+        _stavkePortfolija = stavke;
+      } 
+    }
+    return _stavkePortfolija;
+  }
 
-class _PortfolioDetaljiState extends State<PortfolioDetalji> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +42,8 @@ class _PortfolioDetaljiState extends State<PortfolioDetalji> {
   }
 
   Widget bodyWidget() {
-    return Text(
-        "handled this very... gracefully"); }
-
-  /*  return FutureBuilder<dynamic>(
-        future: GetPortfolio(),
+    return FutureBuilder<dynamic>(
+        future: getStavkePortfolija(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(
@@ -42,35 +54,44 @@ class _PortfolioDetaljiState extends State<PortfolioDetalji> {
               return Center(
                 child: Text('${snapshot.error}'),
               );
-            } else {
-              return ListView(
-                children:
-                snapshot.data.map<Widget>((e)=>PortfolioWidget(e)).toList(),
-          );
-            }
-          }
-        });
-  }
-
-   Future<dynamic> GetPortfolio() async {
-    var portfolio = await APIService.GetById('Portfolio', uposlenik!.uposlenikId);
-    return portfolio!.map((i) => Uposlenici.fromJson(i)).toList();
-  }
-
-  Widget PortfolioWidget(stavka) {
-    return Card(
-      child: TextButton(
-        onPressed: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      DetaljiStavkePortfolija(stavka: stavka)));
-        },
-        child:
-            Padding(padding: EdgeInsets.all(20), child: Text(stavka.)),
-      ),
-    );
-  }
-}*/
-}
+            } else if (_portfolio==null) {
+                return Center(child: Text("Uposlenik nema potrfolio"));
+            } 
+            else {
+              return SingleChildScrollView(
+                  child: Padding(
+                  padding: const EdgeInsets.all(30),
+                  child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                    '${_portfolio!.uposlenik!.ime} ${_portfolio!.uposlenik!.prezime}',
+                      style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.w500, color: Colors.blue),
+                    textAlign: TextAlign.center,),
+                  const SizedBox(
+                    height: 26,
+                  ),
+                  Text(
+                    'Opis portfolija: ${_portfolio!.opis}',
+                      style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w400, color: Colors.blue),
+                    textAlign: TextAlign.center,),
+                  const SizedBox(
+                    height: 26,
+                  ),
+                  ListView(
+                    shrinkWrap:true,
+                  children: 
+                  _stavkePortfolija!.map((e) => new Card(
+                    child: TextButton(
+                    onPressed: () {
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                    builder: (context) => DetaljiStavkePortfolija(stavka: new StavkePortfolija.fromJson(e))));},
+                      child: Padding(
+                      padding: EdgeInsets.all(15),
+                      child: Text("Stavka portfolija ${e['stavkaPortfoliaId']} (klikni za više detalja)")))))
+                      .toList()
+                  )])));}}});}}

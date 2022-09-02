@@ -8,29 +8,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TattooStudio.Model.Requests;
+using TattooStudio.Model.SearchObjects;
 
 namespace RS2_seminarski_tattoostudio.Services
 {
-    public class NarudzbaService : BaseCRUDService<TattooStudio.Model.Narudzba, Narudzba, object, NarudzbaInsertRequest, NarudzbaInsertRequest>, INarudzbaService
+    public class NarudzbaService : BaseCRUDService<TattooStudio.Model.Narudzba, Narudzba, NarudzbaSearchObject, NarudzbaInsertRequest, NarudzbaInsertRequest>, INarudzbaService
     {
         public NarudzbaService(TattooStudioRSIIContext context, IMapper mapper)
             :base(context, mapper)
         {
         }
 
-        public override IList<TattooStudio.Model.Narudzba> Get(object search = null)
+        public override IList<TattooStudio.Model.Narudzba> Get(NarudzbaSearchObject search = null)
         {
-            var entity = _context.Set<Narudzba>().AsQueryable();
-            var result = entity.Include(x => x.Klijent).Include(x => x.StavkeNarudzbes).ToList();
+            var entity = _context.Set<Narudzba>().AsQueryable();//.Include(x => x.Klijent).Include(x => x.StavkeNarudzbes).ToList();
+            if (search?.IsIsporucena == true)
+            {
+                entity = entity.Where(x => x.IsIsporucena == search.IsIsporucena);
+            }
+            if (search?.IsPlacena == true)
+            {
+                entity = entity.Where(x => x.IsPlacena == search.IsPlacena);
+            }
+            var result = entity.ToList();//.Include(x => x.Klijent).Include(x => x.StavkeNarudzbes).ToList();
             return _mapper.Map<IList<TattooStudio.Model.Narudzba>>(result);
         }
 
         public override TattooStudio.Model.Narudzba GetById(int id)
         {
-            var entity = _context.Narudzbas.Include(x => x.StavkeNarudzbes)
+            var entity = _context.Narudzbas/*.Include(x => x.StavkeNarudzbes)
                 .Include(x => x.Klijent)
                 .Where(x => x.NarudzbaId == id)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync();*/
+                .Find(id);
             return _mapper.Map<TattooStudio.Model.Narudzba>(entity);
         }
 
@@ -38,9 +48,10 @@ namespace RS2_seminarski_tattoostudio.Services
         {
             var entity = _mapper.Map<Database.Narudzba>(request);
             entity.IsIsporucena = false;
+            entity.IsPlacena = false;
             _context.Set<Database.Narudzba>().Add(entity);
             _context.SaveChanges();
-            if(request.Proizvodi.Count() == request.Kolicine.Count())
+            /*if(request.Proizvodi.Count() == request.Kolicine.Count())
             {
                 for(int i=0; i<request.Proizvodi.Count(); i++)
                 {
@@ -51,7 +62,7 @@ namespace RS2_seminarski_tattoostudio.Services
                     _context.Set<Database.StavkeNarudzbe>().Add(stavkeNarudzbe);
                 }
                 _context.SaveChanges();
-            }
+            }*/
             foreach(var x in entity.StavkeNarudzbes)
             {
                 entity.UkupniIznos += x.Proizvod.Cijena * x.Kolicina;
@@ -66,7 +77,7 @@ namespace RS2_seminarski_tattoostudio.Services
             _mapper.Map(request, entity);
             _context.SaveChanges();
 
-            if (request.Proizvodi.Count() == request.Kolicine.Count())
+            /*if (request.Proizvodi.Count() == request.Kolicine.Count())
             {
                 for (int i = 0; i < request.Proizvodi.Count(); i++)
                 {
@@ -81,7 +92,7 @@ namespace RS2_seminarski_tattoostudio.Services
             {
                 entity.UkupniIznos += x.Proizvod.Cijena * x.Kolicina;
             }
-            _context.SaveChanges();
+            _context.SaveChanges();*/
             return _mapper.Map<TattooStudio.Model.Narudzba>(entity);
         }
 
@@ -109,6 +120,27 @@ namespace RS2_seminarski_tattoostudio.Services
             entity.IsPlacena = true;
             _context.SaveChanges();
             return true;
+        }
+
+        public int AktivnaNarudzba(int id)
+        {
+            var entity = _context.Narudzbas.Where(x => x.KlijentId == id && x.IsPlacena == false && x.IsIsporucena == false).FirstOrDefault();
+            if (entity != null)
+                return entity.NarudzbaId;
+            else
+            {
+                Narudzba nova = new Narudzba
+                {
+                    Datum = DateTime.Now,
+                    IsIsporucena = false,
+                    IsPlacena = false,
+                    KlijentId = id,
+                    UkupniIznos = 0
+                };
+                _context.Set<Database.Narudzba>().Add(nova);
+                _context.SaveChanges();
+                return nova.NarudzbaId;
+            }
         }
     }
 }

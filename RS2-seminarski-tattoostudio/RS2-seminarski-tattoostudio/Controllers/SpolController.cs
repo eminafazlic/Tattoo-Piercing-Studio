@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RS2_seminarski_tattoostudio.Database;
 using RS2_seminarski_tattoostudio.Services;
@@ -11,6 +12,7 @@ namespace RS2_seminarski_tattoostudio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class SpolController : BaseReadController<TattooStudio.Model.Spol, object>
     {
         public SpolController(IReadService<TattooStudio.Model.Spol, object> service)

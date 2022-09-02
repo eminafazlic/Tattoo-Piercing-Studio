@@ -137,6 +137,7 @@ namespace TattooStudio.WinUI.Proizvod
             // txtOpis
             // 
             this.txtOpis.Location = new System.Drawing.Point(139, 199);
+            this.txtOpis.MaxLength = 40;
             this.txtOpis.Name = "txtOpis";
             this.txtOpis.Size = new System.Drawing.Size(444, 99);
             this.txtOpis.TabIndex = 7;
@@ -152,6 +153,7 @@ namespace TattooStudio.WinUI.Proizvod
             // txtNaziv
             // 
             this.txtNaziv.Location = new System.Drawing.Point(139, 32);
+            this.txtNaziv.MaxLength = 35;
             this.txtNaziv.Name = "txtNaziv";
             this.txtNaziv.Size = new System.Drawing.Size(281, 22);
             this.txtNaziv.TabIndex = 5;

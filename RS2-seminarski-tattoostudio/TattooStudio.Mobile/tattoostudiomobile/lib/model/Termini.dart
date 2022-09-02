@@ -1,3 +1,4 @@
+import 'package:intl/intl.dart';
 import 'package:tattoostudiomobile/model/Klijenti.dart';
 import 'package:tattoostudiomobile/model/TipTermina.dart';
 import 'package:tattoostudiomobile/model/Uposlenici.dart';
@@ -32,7 +33,7 @@ class Termini{
   factory Termini.fromJson(Map<String, dynamic> json) {
     return Termini(
       terminId: json['terminId'] as int,
-      datum: DateTime.tryParse(json['datum']),
+      datum: /*DateFormat('MM/dd/yyyy HH:mm:ss')*/DateTime.parse(json['datum'].toString()),
       opis: json['opis'] as String,
       cijena: json['cijena'] as double,
       isOdobren: json['isOdobren'] as bool,

@@ -34,7 +34,9 @@ namespace RS2_seminarski_tattoostudio
             services.AddControllers(x =>
             {
                 x.Filters.Add<ErrorFilter>();
-            });
+            }).AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             services.AddSwaggerGen();
 

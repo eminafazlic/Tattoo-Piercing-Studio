@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -23,24 +24,21 @@ class DetaljiStavkePortfolija extends StatelessWidget {
             child: Image(
                 height: 300,
                 width: 300,
-                image: MemoryImage(stavka!.slika as Uint8List)),
-          ),
+                image: /*Image.memory(Uint8List.fromList(stavka!.slika!)).image, 
+                errorBuilder: (context, error, stackTrace) => Image.asset("assets/images/error.jpg"),*/
+                AssetImage('assets/images/imgplaceholder.jpg')
+                )),
           Text(
             "Datum objave: ${DateFormat('dd/MM/yyyy').format(stavka!.datum!)}",
             style: TextStyle(fontSize: 20),
           ),
           Text(
             stavka!.opis!,
-            style: TextStyle(fontSize: 20),
-          )
+            style: TextStyle(fontSize: 18, color: Colors.blueGrey),
+          ),
+          //TextButton(onPressed: () {print("${Uint8List.fromList(stavka!.slika!)}");}, child: Text('vidi list<int> sliku'))
         ],
       ),
     );
   }
 }
-
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }

@@ -51,7 +51,6 @@ namespace TattooStudio.WinUI.LoginRegistracija
             this.txtPrezime = new System.Windows.Forms.TextBox();
             this.txtKorisnickoIme = new System.Windows.Forms.TextBox();
             this.txtIme = new System.Windows.Forms.TextBox();
-            this.btnObrisi = new System.Windows.Forms.Button();
             this.btnSpremi = new System.Windows.Forms.Button();
             this.pcbSlika = new System.Windows.Forms.PictureBox();
             this.ofdSlika = new System.Windows.Forms.OpenFileDialog();
@@ -200,6 +199,7 @@ namespace TattooStudio.WinUI.LoginRegistracija
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.Size = new System.Drawing.Size(236, 22);
             this.txtLozinka.TabIndex = 27;
+            this.txtLozinka.UseSystemPasswordChar = true;
             // 
             // txtPotvrdaLozinke
             // 
@@ -207,6 +207,7 @@ namespace TattooStudio.WinUI.LoginRegistracija
             this.txtPotvrdaLozinke.Name = "txtPotvrdaLozinke";
             this.txtPotvrdaLozinke.Size = new System.Drawing.Size(236, 22);
             this.txtPotvrdaLozinke.TabIndex = 26;
+            this.txtPotvrdaLozinke.UseSystemPasswordChar = true;
             // 
             // txtPutanjaDoSlike
             // 
@@ -235,16 +236,6 @@ namespace TattooStudio.WinUI.LoginRegistracija
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(236, 22);
             this.txtIme.TabIndex = 22;
-            // 
-            // btnObrisi
-            // 
-            this.btnObrisi.Location = new System.Drawing.Point(15, 290);
-            this.btnObrisi.Name = "btnObrisi";
-            this.btnObrisi.Size = new System.Drawing.Size(233, 29);
-            this.btnObrisi.TabIndex = 43;
-            this.btnObrisi.Text = "Obriši račun";
-            this.btnObrisi.UseVisualStyleBackColor = true;
-            this.btnObrisi.Click += new System.EventHandler(this.btnObrisi_Click);
             // 
             // btnSpremi
             // 
@@ -276,7 +267,6 @@ namespace TattooStudio.WinUI.LoginRegistracija
             this.panel1.Controls.Add(this.pcbSlika);
             this.panel1.Controls.Add(this.txtIme);
             this.panel1.Controls.Add(this.txtKorisnickoIme);
-            this.panel1.Controls.Add(this.btnObrisi);
             this.panel1.Controls.Add(this.txtPrezime);
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.txtPutanjaDoSlike);
@@ -345,7 +335,6 @@ namespace TattooStudio.WinUI.LoginRegistracija
         private System.Windows.Forms.TextBox txtPrezime;
         private System.Windows.Forms.TextBox txtKorisnickoIme;
         private System.Windows.Forms.TextBox txtIme;
-        private System.Windows.Forms.Button btnObrisi;
         private System.Windows.Forms.Button btnSpremi;
         private System.Windows.Forms.PictureBox pcbSlika;
         private System.Windows.Forms.OpenFileDialog ofdSlika;

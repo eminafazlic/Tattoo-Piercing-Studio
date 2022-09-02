@@ -1,4 +1,4 @@
-/*import 'dart:convert';
+import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
@@ -15,7 +15,7 @@ class StripeService {
   static String apiBase = 'https://api.stripe.com/v1';
   static String paymentApiUrl = '${StripeService.apiBase}/charges';
   static Uri paymentApiUri = Uri.parse(paymentApiUrl);
-  static String secret = 'sk_test_51IdapTADfoZJQshjzjsFfSW1ZVr4QtbmkbPEwYUxcecJkeryBBK5vo6g6jlkAlIA4AhSkYwu06W2HSvZkPbO5xtU00jLkqDT3H';
+  static String secret = 'sk_test_51LcsNeLojBXGYKgottK4R89eSbUVYaeXpNTLUCkdwz8iPou60ayz6WdgT8ybKmNeg8auz2viQpwKfyzWhoPpJoBv00ITuLHDP7';
 
   static Map<String, String> headers = {
     'Authorization': 'Bearer ${StripeService.secret}',
@@ -24,7 +24,7 @@ class StripeService {
 
   static init() {
     StripePayment.setOptions(StripeOptions(
-        publishableKey: 'pk_test_51IdapTADfoZJQshjAAtKdwjypFWWfGYJ9I4VK4ZYoq5VbzaTU3GYLDFa1ewrbQ8XAa21PsUg4ZhwnHyrozWReMkP00ospXOczx',
+        publishableKey: 'pk_test_51LcsNeLojBXGYKgolf9L7IzFGbktd7UNiNLlXBEydXmgQQFWLqoub7UBQ2G7lEgIuxZTwEqMh6RFixr5J49D1gdD000x6Zxg0V',
         merchantId: 'test', androidPayMode: 'test'));
   }
 
@@ -34,7 +34,7 @@ class StripeService {
       Map<String, dynamic> body = {
         "amount": amount,
         "currency": currency,
-        "description" : 'Donacija azilu',
+        "description" : 'Opis',
         "source" : "tok_mastercard"
       };
       var response = await http.post(
@@ -82,4 +82,4 @@ class StripeService {
     }
     return new StripeTransactionResponse(message: message, success: false);
   }
-}*/
+}

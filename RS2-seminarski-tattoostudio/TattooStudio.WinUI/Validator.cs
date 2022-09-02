@@ -16,6 +16,9 @@ namespace TattooStudio.WinUI
         public const string email = "Obavezno polje! Format: example@mail.com";
         public const string lozinke = "Lozinke se ne podudaraju!";
         public const string intpolje = "Obavezan unos broja!";
+        public const string minDuzina = "Minimalan broj karaktera je ";
+        public const string maxDuzina = "Maksimalan broj karaktera je ";
+        public const string samoSlova = "Dozvoljen unos samo slova!";
 
         public static bool ObaveznoPolje(TextBox textBox, ErrorProvider err, string poruka)
         {
@@ -99,5 +102,58 @@ namespace TattooStudio.WinUI
             return true;
         }
 
+        public static bool MinDuzina(RichTextBox richTextBox, ErrorProvider err, int min, string poruka)
+        {
+            if ((richTextBox.Text).Length < min)
+            {
+                err.SetError(richTextBox, poruka + min);
+                return false;
+            }
+            err.Clear();
+            return true;
+        }
+
+        public static bool MinDuzina(TextBox textBox, ErrorProvider err, int min, string poruka)
+        {
+            if ((textBox.Text).Length < min)
+            {
+                err.SetError(textBox, poruka + min);
+                return false;
+            }
+            err.Clear();
+            return true;
+        }
+
+        public static bool MaxDuzina(RichTextBox richTextBox, ErrorProvider err, int max, string poruka)
+        {
+            if (richTextBox.Text.Length > max)
+            {
+                err.SetError(richTextBox, poruka + max);
+                return false;
+            }
+            err.Clear();
+            return true;
+        }
+        public static bool MaxDuzina(TextBox textBox, ErrorProvider err, int max, string poruka)
+        {
+            if (textBox.Text.Length > max)
+            {
+                err.SetError(textBox, poruka + max);
+                return false;
+            }
+            err.Clear();
+            return true;
+        }
+        public static bool SamoSlova(TextBox textBox, ErrorProvider err, string poruka)
+        {
+            Regex regex = new Regex("^[a-zA-Z]+$");
+            if (regex.IsMatch(textBox.Text))
+            {
+                err.SetError(textBox, poruka);
+                return false;
+            }
+            err.Clear();
+            return true;
+        }
     }
 }

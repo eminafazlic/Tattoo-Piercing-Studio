@@ -2,7 +2,8 @@ import 'dart:convert';
 
 class Proizvodi
 {
-  final proizvodId;
+  final int? proizvodId;
+  final int? tipProizvodaId;
   final String? naziv;
   final String? cijena;
   final List<int>? slika;
@@ -10,6 +11,7 @@ class Proizvodi
 
   Proizvodi({
     this.proizvodId,
+    this.tipProizvodaId,
     this.naziv,
     this.cijena,
     this.slika,
@@ -20,7 +22,8 @@ class Proizvodi
     String stringByte = json["slika"] as String;
     List<int>bytes=base64.decode(stringByte);
     return Proizvodi(
-      proizvodId:["proizvodId"],
+      proizvodId:json["proizvodId"],
+      tipProizvodaId: json["tipProizvodaId"],
       naziv:json["naziv"],
       cijena:json["cijena"].toString(),
       slika: bytes,
@@ -30,6 +33,7 @@ class Proizvodi
 
   Map<String, dynamic> toJson() => {
     "proizvodId":proizvodId,
+    "tipProizvodaId":tipProizvodaId,
     "naziv":naziv,
     "cijena":cijena,
     "slika":slika,

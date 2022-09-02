@@ -10,7 +10,7 @@ namespace TattooStudio.Model.Requests
         [RegularExpression("^[a-zA-Z0-9 šđžćč]*$", ErrorMessage = "Dozvoljen unos samo slova i brojeva")]
 
         public string Naziv { get; set; }
-        [Range(1, 3)]
+        //[Range(1, 3)]
         [Required(ErrorMessage = "Obavezno polje")]
         public int? TipProizvodaId { get; set; }
         [Required(ErrorMessage = "Obavezno polje")]

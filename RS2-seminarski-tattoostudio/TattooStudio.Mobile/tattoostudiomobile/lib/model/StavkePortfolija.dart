@@ -17,7 +17,7 @@ class StavkePortfolija{
     String stringByte = json['slika'] as String;
     List<int>bytes=base64.decode(stringByte);
     return StavkePortfolija(
-      stavkePortfolijaId: json['stavkePortfoliumId'] as int,
+      stavkePortfolijaId: json['stavkaPortfoliaId'] as int,
       datum: DateTime.tryParse(json['datum']),
       opis: json['opis'],
       slika: bytes
@@ -25,7 +25,7 @@ class StavkePortfolija{
   }
 
   Map<String, dynamic> toJson() => {
-    'stavkePortfoliumId':stavkePortfolijaId,
+    'stavkaPortfoliaId':stavkePortfolijaId,
     'slika':slika,
     'opis':opis,
     'datum':datum == null ? null : datum!.toIso8601String(),

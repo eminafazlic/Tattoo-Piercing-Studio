@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:tattoostudiomobile/model/Klijenti.dart';
 import 'package:tattoostudiomobile/providers/apiservice.dart';
+import 'package:tattoostudiomobile/screens/Home.dart';
 import 'Pocetna.dart';
 
 
@@ -13,8 +14,8 @@ class DetaljiKlijenta extends StatefulWidget {
 }
 
 class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
-  Klijenti korisnik = Klijenti();
 
+  Klijenti korisnik = Klijenti();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +24,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     );
   }
 
-  Widget body() {
     dynamic response;
-    Klijenti request = Klijenti();
-
-    const _obaveznoPolje = "Polje je obavezno";
-
-    TextStyle style = const TextStyle(fontSize: 18.0);
-
     TextEditingController imeController = TextEditingController();
     TextEditingController prezimeController = TextEditingController();
     TextEditingController emailController = TextEditingController();
@@ -39,6 +33,9 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     TextEditingController lozinkaController = TextEditingController();
     DateTime _odabraniDatumRodjenja = DateTime.now();
 
+  Widget body() {
+    const _obaveznoPolje = "Polje je obavezno";
+    TextStyle style = const TextStyle(fontSize: 18.0);
     List<DropdownMenuItem> spolovi = [
       DropdownMenuItem(
           child: Text(
@@ -79,9 +76,9 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
       }
     }
 
-    Future<void> sendRequest(Klijenti request) async {
-      response = await APIService.Put("Klijent/update", APIService.klijentId!,
-          json.encode(request.toJson()));
+    Future<void> sendRequest(Map<String, dynamic> request) async {
+      response = await APIService.Put("Klijent", APIService.klijentId!,
+          jsonEncode(request));
     }
 
     Future<void> _showDialog(String text, [dismissable = true]) async {
@@ -97,7 +94,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
                 onPressed: () {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                      builder: (BuildContext context) => const Pocetna(),
+                      builder: (BuildContext context) => const Home(),
                     ),
                     (route) => false,
                   );
@@ -190,7 +187,9 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     );
     final txtLozinka = TextFormField(
       validator: (value) {
-        if (value != null && value.isNotEmpty) {
+        if (value==null || value.isEmpty)
+          return "Obavezno polje!";
+        else if (value != null && value.isNotEmpty) {
           if (value.length < 5) {
             return "Minimalna dužina 5!";
           } else if (!value.contains(RegExp(r'[0-9]')) ||
@@ -211,7 +210,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
     );
 
-    final btnOdustani = Material(
+    final btnOdjava = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
       color: Colors.white,
@@ -225,7 +224,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
             (route) => false,
           );
         },
-        child: Text("Odustani",
+        child: Text("Odjavi se",
             textAlign: TextAlign.center,
             style: style.copyWith(
                 color: const Color(0xff01A0C7), fontWeight: FontWeight.bold)),
@@ -240,23 +239,27 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
         onPressed: () async {
           if (_formKey.currentState!.validate()) {
             response = null;
-            request.ime = imeController.text;
-            request.prezime = prezimeController.text;
-            request.email = emailController.text;
-            request.datumRodjenja = _odabraniDatumRodjenja;
-            request.spolId = _odabraniSpol;
-            request.korisnickoIme = korisnickoImeController.text;
-            request.lozinka = lozinkaController.text;
+            Map<String, dynamic> request = {
+            'ime': imeController.text,
+            'prezime': prezimeController.text,
+            'datumRodjenja': _odabraniDatumRodjenja.toIso8601String(),
+            'email': emailController.text,
+            'telefon': korisnik.telefon,
+            'korisnickoIme': korisnickoImeController.text,
+            'spolId': _odabraniSpol,
+            'lozinka': lozinkaController.text,
+            'potvrdiLozinku': lozinkaController.text,
+            };
 
-            if (request.lozinka == null || request.lozinka!.isEmpty) {
-              request.lozinka = APIService.lozinka!;
+            if (lozinkaController.text == null || lozinkaController.text.isEmpty) {
+              print("nedostaje lozinka ok");
             }
 
             await sendRequest(request);
             if (response == null) {
               _showDialog('Došlo je do greške, pokušajte opet! ');
             } else {
-              //i dont even know
+              _showDialog('Uspješno ste uredili Vaše podatke');
             }
           }
         },
@@ -270,7 +273,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
     Widget ddSpol() {
       return DropdownButtonFormField<dynamic>(
         validator: (value) {
-          return value == null || value.isEmpty ? _obaveznoPolje : null;
+          return value == null /*|| value.isEmpty*/ ? _obaveznoPolje : null;
         },
         hint: Text(
           'Spol',
@@ -300,7 +303,8 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
           imeController.text = korisnik.ime!;
           prezimeController.text = korisnik.prezime!;
           emailController.text = korisnik.email!;
-          _odabraniDatumRodjenja = korisnik.datumRodjenja!;
+          if(_odabraniDatumRodjenja.difference(DateTime.now()).inDays==0)
+            _odabraniDatumRodjenja=korisnik.datumRodjenja!;
           dtpDatumRodjenjaController.text =
               "${_odabraniDatumRodjenja.toLocal()}".split(' ')[0];
           _odabraniSpol = korisnik.spolId!;
@@ -308,7 +312,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
           //lozinkaController.text = korisnik.lozinka!;
           imeController.text = korisnik.ime!;
 
-          return Center(
+          return SingleChildScrollView(
             child: Container(
               color: Colors.white,
               child: Padding(
@@ -364,7 +368,7 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    btnOdustani,
+                                    btnOdjava,
                                     const SizedBox(width: 15.0),
                                     Expanded(child: btnSpremiIzmjene)
                                   ]),
@@ -385,180 +389,8 @@ class _DetaljiKlijentaState extends State<DetaljiKlijenta> {
   }
 
   Future<dynamic> getKorisnik(int? korisnikId) async {
-    var response = await APIService.GetById("Klijent", korisnikId!);
+    var response = await APIService.GetById("Klijent", korisnikId!, null);
+    korisnik = Klijenti.fromJson(response);
     return response;
   }
 }
-
-
-
-//pokušaj prvi:
-
-//   Klijenti klijent = Klijenti();
-//   TextEditingController korisnickoImeController = new TextEditingController();
-//   TextEditingController lozinkaController = new TextEditingController();
-//   TextEditingController potvrdaLozinkeController = new TextEditingController();
-//   TextEditingController imeController = new TextEditingController();
-//   TextEditingController prezimeController = new TextEditingController();
-//   DateTime datumRodjenjaController = DateTime.now();
-//   TextEditingController emailController = new TextEditingController();
-//   TextEditingController telefonController = new TextEditingController();
-//   TextEditingController spolController = new TextEditingController();
-//   List<DropdownMenuItem> spolovi = [
-//     DropdownMenuItem(
-//         child: Text(
-//           "Muški",
-//           style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-//         ),
-//         value: 'M'),
-//     DropdownMenuItem(
-//         child: Text(
-//           "Ženski",
-//           style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
-//         ),
-//         value: 'Ž'),
-//     DropdownMenuItem(
-//         child: Text(
-//           "Ostalo",
-//           style: TextStyle(fontSize: 18.0, color: Colors.grey[600]),
-//         ),
-//         value: 'O'),
-//   ];
-//   String? odabraniSpol;
-//   var result = null;
-//   Future<void> GetData() async {
-//     result = await APIService.GetById('Klijent', APIService.klijentId);
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         body: ListView(
-//       children: [
-//         Padding(
-//           padding: EdgeInsets.all(60),
-//           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-//             TextField(
-//               controller: imeController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   hintText: 'Ime'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//             TextField(
-//               controller: prezimeController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   hintText: 'Prezime'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//             TextField(
-//               controller: emailController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   hintText: 'Email'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//             TextField(
-//               controller: telefonController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   focusColor: Colors.blue,
-//                   hintText: 'Telefon'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//             TextField(
-//               controller: korisnickoImeController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   hintText: 'Korisničko ime'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//             TextField(
-//               controller: lozinkaController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   hintText: 'Lozinka'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//             TextField(
-//               controller: potvrdaLozinkeController,
-//               decoration: InputDecoration(
-//                   border: OutlineInputBorder(
-//                       borderRadius: BorderRadius.circular(15),
-//                       borderSide: BorderSide(color: Colors.blue)),
-//                   hintText: 'Potvrdite lozinku'),
-//             ),
-//             SizedBox(
-//               height: 7,
-//             ),
-//
-//             //date picker i combobox za spol tu
-//
-//             Container(
-//               height: 60,
-//               width: 300,
-//               decoration: BoxDecoration(
-//                   color: Colors.blue, borderRadius: BorderRadius.circular(15)),
-//               child: TextButton(
-//                 onPressed: () async {
-//                   APIService.korisnickoIme = korisnickoImeController.text;
-//                   APIService.lozinka = lozinkaController.text;
-//                   await GetData();
-//                   if (result != null) {
-//                     print(result);
-//                     Navigator.of(context).pushReplacementNamed('/home');
-//                   }
-//                 },
-//                 child: Text(
-//                   'Spremi',
-//                   style: TextStyle(color: Colors.white, fontSize: 20),
-//                 ),
-//               ),
-//             ),
-//             SizedBox(height: 20),
-//             Container(
-//               height: 60,
-//               width: 300,
-//               decoration: BoxDecoration(
-//                   color: Colors.blue, borderRadius: BorderRadius.circular(20)),
-//               child: TextButton(
-//                 onPressed: () async {
-//                   Navigator.of(context).pushReplacementNamed('/pocetna');
-//                 },
-//                 child: Text(
-//                   'Obriši račun',
-//                   style: TextStyle(color: Colors.red, fontSize: 20),
-//                 ),
-//               ),
-//             ),
-//           ]),
-//         )
-//       ],
-//     ));
-//   }
-// }

@@ -43,11 +43,13 @@ namespace TattooStudio.WinUI.Termin
                 IList<Model.Termin> result = null;
                 if (vrstaTermina == 1)
                 {
+                    request.IsOtkazan = false;
                     request.NadolazeciTermini = true;
                 }
                 else if (vrstaTermina == 2)
                 {
                     request.IsOdobren = false;
+                    request.IsOtkazan = false;
                 }
                 result = await _terminService.Get<IList<Model.Termin>>(request);
                 dgvTermini.DataSource = null;

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RS2_seminarski_tattoostudio.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class BaseCRUDController<T, TSearch, TInsert, TUpdate> : BaseReadController<T, TSearch> where T : class where TSearch : class where TInsert : class where TUpdate : class
     {
         protected readonly ICRUDService<T, TSearch, TInsert, TUpdate> _crudService;

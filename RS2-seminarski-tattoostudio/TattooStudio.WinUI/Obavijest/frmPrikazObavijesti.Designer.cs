@@ -34,6 +34,7 @@ namespace TattooStudio.WinUI.Obavijest
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvObavijesti = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chbSamoMojeObavijesti = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvObavijesti)).BeginInit();
             this.panel1.SuspendLayout();
@@ -87,6 +88,7 @@ namespace TattooStudio.WinUI.Obavijest
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.panel1.Controls.Add(this.chbSamoMojeObavijesti);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Controls.Add(this.btnDodajObavijest);
@@ -94,6 +96,19 @@ namespace TattooStudio.WinUI.Obavijest
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(713, 335);
             this.panel1.TabIndex = 1;
+            // 
+            // chbSamoMojeObavijesti
+            // 
+            this.chbSamoMojeObavijesti.AutoSize = true;
+            this.chbSamoMojeObavijesti.Checked = true;
+            this.chbSamoMojeObavijesti.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chbSamoMojeObavijesti.Location = new System.Drawing.Point(25, 23);
+            this.chbSamoMojeObavijesti.Name = "chbSamoMojeObavijesti";
+            this.chbSamoMojeObavijesti.Size = new System.Drawing.Size(207, 21);
+            this.chbSamoMojeObavijesti.TabIndex = 7;
+            this.chbSamoMojeObavijesti.Text = "Prikaži samo moje obavijesti";
+            this.chbSamoMojeObavijesti.UseVisualStyleBackColor = true;
+            this.chbSamoMojeObavijesti.CheckedChanged += new System.EventHandler(this.chbSamoMojeObavijesti_CheckedChanged);
             // 
             // frmPrikazObavijesti
             // 
@@ -119,5 +134,6 @@ namespace TattooStudio.WinUI.Obavijest
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvObavijesti;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.CheckBox chbSamoMojeObavijesti;
     }
 }

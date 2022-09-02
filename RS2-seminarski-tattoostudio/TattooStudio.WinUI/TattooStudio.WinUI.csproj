@@ -188,6 +188,7 @@
     <Compile Include="Validator.cs" />
     <EmbeddedResource Include="Izvjestaj\frmIzvjestajDetalji.resx">
       <DependentUpon>frmIzvjestajDetalji.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Izvjestaj\frmPrikazIzvjestaja.resx">
       <DependentUpon>frmPrikazIzvjestaja.cs</DependentUpon>

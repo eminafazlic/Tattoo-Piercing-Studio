@@ -32,51 +32,23 @@ namespace TattooStudio.WinUI.Obavijest
 
         private async void btnObrisi_Click(object sender, EventArgs e)
         {
-            try
+            if (_obavijest?.UposlenikId == null ? false : _obavijest.UposlenikId != Global.prijavljeniUposlenik.UposlenikId)
             {
-                if (_obavijest != null)
-                {
-                    DialogResult dialogResult = MessageBox.Show("Da li ste sigurni?", "Upozorenje", MessageBoxButtons.YesNo);
-                    if (dialogResult == DialogResult.Yes)
-                    {
-                        await _obavijestService.Delete(_obavijest.ObavijestId);
-                        Close();
-                    }
-                }
+                MessageBox.Show("Nije moguće obrisati obavijesti drugih autora.");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private async void btnSnimi_Click(object sender, EventArgs e)
-        {
-            if (ValidirajUnos())
+            else
             {
                 try
                 {
-                    if (_obavijest == null)
+                    if (_obavijest != null)
                     {
-                        var request = new ObavijestInsertRequest()
+                        DialogResult dialogResult = MessageBox.Show("Da li ste sigurni?", "Upozorenje", MessageBoxButtons.YesNo);
+                        if (dialogResult == DialogResult.Yes)
                         {
-                            Naslov = txtNaslov.Text,
-                            Sadrzaj = txtSadrzaj.Text,
-                            UposlenikId = Global.prijavljeniUposlenik.UposlenikId,
-                            Datum = DateTime.Now
-                        };
-                        await _obavijestService.Insert<Model.Obavijest>(request);
+                            await _obavijestService.Delete(_obavijest.ObavijestId);
+                            Close();
+                        }
                     }
-                    else
-                    {
-                        var request = new ObavijestUpdateRequest()
-                        {
-                            Naslov = txtNaslov.Text,
-                            Sadrzaj = txtSadrzaj.Text
-                        };
-                        await _obavijestService.Update<Model.Obavijest>(_obavijest.ObavijestId, request);
-                    }
-                    Close();
                 }
                 catch (Exception ex)
                 {
@@ -85,10 +57,56 @@ namespace TattooStudio.WinUI.Obavijest
             }
         }
 
+        private async void btnSnimi_Click(object sender, EventArgs e)
+        {
+            if (_obavijest?.UposlenikId == null ? false : _obavijest.UposlenikId != Global.prijavljeniUposlenik.UposlenikId)
+            {
+                MessageBox.Show("Nije moguće uređivati obavijesti drugih autora.");
+            }
+            else
+            {
+                if (ValidirajUnos())
+                {
+                    try
+                    {
+                        if (_obavijest == null)
+                        {
+                            var request = new ObavijestInsertRequest()
+                            {
+                                Naslov = txtNaslov.Text,
+                                Sadrzaj = txtSadrzaj.Text,
+                                UposlenikId = Global.prijavljeniUposlenik.UposlenikId,
+                                Datum = DateTime.Now
+                            };
+                            await _obavijestService.Insert<Model.Obavijest>(request);
+                        }
+                        else
+                        {
+                            var request = new ObavijestUpdateRequest()
+                            {
+                                Naslov = txtNaslov.Text,
+                                Sadrzaj = txtSadrzaj.Text
+                            };
+                            await _obavijestService.Update<Model.Obavijest>(_obavijest.ObavijestId, request);
+                        }
+                        Close();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
         private bool ValidirajUnos()
         {
             return Validator.ObaveznoPolje(txtNaslov, err, Validator.poruka) &&
-                Validator.ObaveznoPolje(txtSadrzaj, err, Validator.poruka);
+                Validator.MinDuzina(txtNaslov, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtNaslov, err, 50, Validator.maxDuzina) &&
+                Validator.ObaveznoPolje(txtSadrzaj, err, Validator.poruka) &&
+                Validator.MinDuzina(txtSadrzaj, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtSadrzaj, err, 500, Validator.maxDuzina);
         }
     }
 }

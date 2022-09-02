@@ -32,8 +32,11 @@ namespace TattooStudio.WinUI.Proizvod
                 txtCijena.Text = _proizvod.Cijena.ToString();
                 cmbTipProizvoda.SelectedValue = _proizvod.TipProizvodaId;
                 txtOpis.Text = _proizvod.Opis;
-                txtPutanjaDoSlike.Text = LoginRegistracija.frmUposlenikDetalji.ConvertBytesToString((Byte[])_proizvod.Slika);
-                pcbSlika.Image = Image.FromFile(txtPutanjaDoSlike.Text);
+                txtPutanjaDoSlike.Text = ConvertBytesToString((Byte[])_proizvod.Slika);
+                if (File.Exists(txtPutanjaDoSlike.Text))
+                {
+                    pcbSlika.Image = Image.FromFile(txtPutanjaDoSlike.Text);
+                }
             }
         }
 
@@ -129,13 +132,27 @@ namespace TattooStudio.WinUI.Proizvod
             }
         }
 
+        public static string ConvertBytesToString(byte[] bytes)
+        {
+            string output = String.Empty;
+            MemoryStream stream = new MemoryStream(bytes);
+            stream.Position = 0;
+            StreamReader reader = new StreamReader(stream);
+            output = reader.ReadToEnd();
+            return output;
+        }
+
         private bool ValidirajUnos()
         {
             return Validator.ObaveznoPolje(txtNaziv, err, Validator.poruka) &&
                 Validator.ObaveznoPolje(txtCijena, err, Validator.poruka) &&
                 Validator.IntegerPolje(txtCijena, err, Validator.intpolje) &&
                 Validator.ObaveznoPolje(txtPutanjaDoSlike, err, Validator.poruka) &&
-                Validator.ObaveznoPolje(txtOpis, err, Validator.poruka);
+                Validator.ObaveznoPolje(txtOpis, err, Validator.poruka) &&
+                Validator.MinDuzina(txtNaziv, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtNaziv, err, 35, Validator.maxDuzina) &&
+                Validator.MinDuzina(txtOpis, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtOpis, err, 40, Validator.maxDuzina);
         }
     }
 }

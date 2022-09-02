@@ -50,5 +50,29 @@ namespace TattooStudio.WinUI.Obavijest
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private async void chbSamoMojeObavijesti_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chbSamoMojeObavijesti.Checked)
+            {
+                var request = new ObavijestInsertRequest()
+                {
+                    UposlenikId = idPrijavljenogUposlenika
+                };
+                dgvObavijesti.DataSource = null;
+                dgvObavijesti.DataSource = await _obavijestService.Get<IList<Model.Obavijest>>(request);
+                dgvObavijesti.Columns[0].Visible = false;
+                dgvObavijesti.Columns[4].Visible = false;
+                dgvObavijesti.Columns[5].Visible = false;
+            }
+            else
+            {
+                dgvObavijesti.DataSource = null;
+                dgvObavijesti.DataSource = await _obavijestService.Get<IList<Model.Obavijest>>(null);
+                dgvObavijesti.Columns[0].Visible = false;
+                dgvObavijesti.Columns[4].Visible = false;
+                dgvObavijesti.Columns[5].Visible = false;
+            }
+        }
     }
 }

@@ -42,6 +42,7 @@ namespace TattooStudio.WinUI.Narudzba
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.chbIsIsporucena = new System.Windows.Forms.CheckBox();
+            this.chbPlacena = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStavkeNarudzbe)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -96,6 +97,7 @@ namespace TattooStudio.WinUI.Narudzba
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chbPlacena);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -179,6 +181,17 @@ namespace TattooStudio.WinUI.Narudzba
             this.chbIsIsporucena.UseVisualStyleBackColor = true;
             this.chbIsIsporucena.CheckedChanged += new System.EventHandler(this.chbIsIsporucena_CheckedChanged);
             // 
+            // chbPlacena
+            // 
+            this.chbPlacena.AutoCheck = false;
+            this.chbPlacena.AutoSize = true;
+            this.chbPlacena.Location = new System.Drawing.Point(10, 226);
+            this.chbPlacena.Name = "chbPlacena";
+            this.chbPlacena.Size = new System.Drawing.Size(193, 21);
+            this.chbPlacena.TabIndex = 8;
+            this.chbPlacena.Text = "Ova narudžba je plaćena.";
+            this.chbPlacena.UseVisualStyleBackColor = true;
+            // 
             // frmNarudzbaDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -213,5 +226,6 @@ namespace TattooStudio.WinUI.Narudzba
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox chbIsIsporucena;
+        private System.Windows.Forms.CheckBox chbPlacena;
     }
 }

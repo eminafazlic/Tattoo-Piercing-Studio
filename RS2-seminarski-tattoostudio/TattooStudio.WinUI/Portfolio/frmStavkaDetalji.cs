@@ -24,9 +24,11 @@ namespace TattooStudio.WinUI.Portfolio
             {
                 dtpDatum.Value = (DateTime)_stavkePortfolium.Datum;
                 txtOpis.Text = _stavkePortfolium.Opis;
-                txtSlika.Text = LoginRegistracija.frmUposlenikDetalji.ConvertBytesToString((Byte[])_stavkePortfolium.Slika);
-                pcbSlika.Image = Image.FromFile(txtSlika.Text);
-
+                txtSlika.Text = ConvertBytesToString((Byte[])_stavkePortfolium.Slika);
+                if (File.Exists(txtSlika.Text))
+                {
+                    pcbSlika.Image = Image.FromFile(txtSlika.Text);
+                }
             }
 
         }
@@ -107,9 +109,19 @@ namespace TattooStudio.WinUI.Portfolio
                 }
             }
         }
+        private string ConvertBytesToString(byte[] bytes)
+        {
+            string output = String.Empty;
+            MemoryStream stream = new MemoryStream(bytes);
+            stream.Position = 0;
+            StreamReader reader = new StreamReader(stream);
+            output = reader.ReadToEnd();
+            return output;
+        }
         private bool ValidirajUnos()
         {
             return Validator.ObaveznoPolje(txtOpis, err, Validator.poruka) &&
+                Validator.MaxDuzina(txtOpis, err, 100, Validator.maxDuzina) &&
                 Validator.ObaveznoPolje(txtSlika, err, Validator.poruka);
         }
     }

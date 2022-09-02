@@ -75,6 +75,13 @@ namespace RS2_seminarski_tattoostudio.Services
             entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Lozinka);
             _context.Uposleniks.Add(entity);
             _context.SaveChanges();
+            var noviUposlenik = _context.Uposleniks.Where(x => x.KorisnickoIme == request.KorisnickoIme).FirstOrDefault();
+            Portfolio portfolio = new Portfolio
+            {
+                UposlenikId = noviUposlenik.UposlenikId
+            };
+            _context.Portfolios.Add(portfolio);
+            _context.SaveChanges();
             return _mapper.Map<TattooStudio.Model.Uposlenik>(entity);
         }
         public static string GenerateSalt()

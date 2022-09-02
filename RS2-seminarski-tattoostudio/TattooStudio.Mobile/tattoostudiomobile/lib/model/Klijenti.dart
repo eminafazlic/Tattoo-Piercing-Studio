@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import 'Spolovi.dart';
 
@@ -26,14 +27,14 @@ class Klijenti {
 
   factory Klijenti.fromJson(Map<String, dynamic> json) {
     return Klijenti(
-        klijentId: json['klijentid'] as int,
+        //klijentId: json['klijentid'] as int,
         ime: json['ime'] as String,
         prezime: json['prezime'] as String,
-        datumRodjenja: DateTime.tryParse(json['datumRodjenja']),
+        datumRodjenja: DateFormat('MM/dd/yyyy HH:mm:ss').parse(json['datumRodjenja'].toString()),
         email: json['email'] as String,
         telefon: json['telefon'] as String,
         korisnickoIme: json['korisnickoIme'] as String,
-        lozinka: json['lozinka'] as String,
+        //lozinka: json['lozinka'] as String,
         spolId: json['spolId'] as int);
         //spol: Spolovi.fromJson(json['spol']));
   }

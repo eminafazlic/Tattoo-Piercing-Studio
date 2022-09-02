@@ -14,6 +14,7 @@ class APIService with ChangeNotifier {
   static String? lozinka;
   static String? token;
   String route;
+  static int? aktivnaNarudzba;
 
   APIService({required this.route});
 
@@ -29,9 +30,6 @@ class APIService with ChangeNotifier {
 
   static Future<String?> prijava(String KorisnickoIme, String Lozinka) async{
 
-    print("moram jedan testni gettt");
-    final test = await http.get(Uri.parse(_baseRoute+"TipProizvodum"));
-    print("response body testnog geta -> ${test.body}");
     
     String baseUrl = _baseRoute + "Klijent/login";
     final response = await http.post(Uri.parse(baseUrl),
@@ -43,7 +41,20 @@ class APIService with ChangeNotifier {
          'password': Lozinka,
        }),
     );
-     if (response.statusCode == 200) return response.body;
+     if (response.statusCode == 200)
+     {
+     Map<String, dynamic> map = jsonDecode(response.body);
+     klijentId = map['id'];
+     token = map['token'];
+
+     String baseUrl2 = _baseRoute + "Narudzba/AktivnaNarudzba/${klijentId}";
+     var narudzba = await http.get(Uri.parse(baseUrl2),
+     headers:
+      {'Authorization' : 'Bearer $token'});
+      aktivnaNarudzba = json.decode(narudzba.body) as int;
+
+     return response.body;
+     }
 
   return null;
 }
@@ -54,10 +65,10 @@ class APIService with ChangeNotifier {
     if(object!=null){
       baseUrl=baseUrl+'?'+queryString;
     }
-    // final String basicAuth='Basic '+base64Encode(utf8.encode{'$korisnickoIme:$lozinka'});
     final response=await http.get(
       Uri.parse(baseUrl),
-      // headers:{HttpHeaders.authorizationHeader:basicAuth}
+      headers://{HttpHeaders.authorizationHeader:'Bearer ${token}'}
+      {'Authorization' : 'Bearer $token'}
     );
     if(response.statusCode==200)
       {
@@ -66,13 +77,17 @@ class APIService with ChangeNotifier {
     return null;
   }
 
-  static Future<dynamic> GetById(String route, dynamic id) async
+  static Future<dynamic> GetById(String route, dynamic id, dynamic search) async
   {
-    String baseUrl=_baseRoute+route+"/"+id.toString();
-    // final String basicAuth='Basic '+base64Encode(utf8.encode{'$korisnickoIme:$lozinka'});
+    String baseUrl = _baseRoute + route;
+    if(search!=null){
+      baseUrl=baseUrl+'?'+search.toString();
+    }
+    else
+      baseUrl=_baseRoute+route+"/"+id.toString();
     final response=await http.get(
       Uri.parse(baseUrl),
-      // headers:{HttpHeaders.authorizationHeader:basicAuth}
+      headers:{'Authorization':'Bearer $token'}
     );
     if(response.statusCode==200)
     {
@@ -87,11 +102,12 @@ class APIService with ChangeNotifier {
     final response=await http.post(
       Uri.parse(baseUrl),
       headers: <String, String>{
-        'Content-Type': 'application/json: charset=UTF-8',
+        'Content-Type': 'application/json; charset=UTF-8',
+        'Authorization':'Bearer $token'
       },
       body: body,
     );
-    if(response.statusCode==201)
+    if(response.statusCode==200)
       {
         return json.decode(response.body);
       }
@@ -100,34 +116,26 @@ class APIService with ChangeNotifier {
 
   static Future<dynamic> Put(String route, int id, String body) async {
     String baseUrl = _baseRoute + route + "/" + id.toString();
-
-    // final String basicAuth =
-    //     'Basic ' + base64Encode(utf8.encode('$korisnickoIme:$lozinka'));
-
     final response = await http.put(
       Uri.parse(baseUrl),
       headers: {
         HttpHeaders.contentTypeHeader: 'application/json; charset=UTF-8',
         // HttpHeaders.authorizationHeader: basicAuth
+        'Authorization':'Bearer $token'
       },
       body: body,
     );
-
     if (response.statusCode == 200) {
       return json.decode(response.body);
     }
       return null;
   }
 
-  static Future<String?> Delete(String route, dynamic id) async {
-    String baseUrl = _baseRoute + route + "/" + id;
-
-    // final String basicAuth =
-    //     'Basic ' + base64Encode(utf8.encode('$korisnickoIme:$lozinka'));
-
+  static Future<bool?> Delete(String route, dynamic id) async {
+    String baseUrl = _baseRoute + route + "/" + id.toString();
     final response = await http.delete(
       Uri.parse(baseUrl),
-      // headers: {HttpHeaders.authorizationHeader: basicAuth},
+      headers: {'Authorization':'Bearer $token'},
     );
 
     if (response.statusCode == 200) {
@@ -140,7 +148,7 @@ class APIService with ChangeNotifier {
 
 
 
-  Future<dynamic> get(dynamic searchObject) async {
+  /*Future<dynamic> get(dynamic searchObject) async {
     print("called ProductProvider.GET METHOD");
     var url = Uri.parse("http://10.0.2.2:52830/api/Proizvod");
 
@@ -156,5 +164,5 @@ class APIService with ChangeNotifier {
     else {
       throw Exception("User not allowed");
     }
-  }
+  }*/
 }

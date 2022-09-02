@@ -31,8 +31,8 @@ namespace TattooStudio.WinUI.Proizvod
                 dgvProizvodi.DataSource = null;
                 dgvProizvodi.DataSource = list;
                 dgvProizvodi.Columns[0].Visible = false;
-                dgvProizvodi.Columns[2].Visible = false;
-                dgvProizvodi.Columns[6].Visible = false;
+                dgvProizvodi.Columns[3].Visible = false;
+                dgvProizvodi.Columns[5].Visible = false;
             }
             catch (Exception ex)
             {
@@ -71,9 +71,8 @@ namespace TattooStudio.WinUI.Proizvod
                 dgvProizvodi.DataSource = null;
                 dgvProizvodi.DataSource = await _proizvodService.Get<IList<Model.Proizvod>>(null);
                 dgvProizvodi.Columns[0].Visible = false;
-                dgvProizvodi.Columns[2].Visible = false;
                 dgvProizvodi.Columns[3].Visible = false;
-                dgvProizvodi.Columns[6].Visible = false;
+                dgvProizvodi.Columns[5].Visible = false;
             }
             catch (Exception ex)
             {

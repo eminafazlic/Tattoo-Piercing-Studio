@@ -12,6 +12,7 @@ namespace RS2_seminarski_tattoostudio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Microsoft.AspNetCore.Authorization.AllowAnonymous]
     public class StavkeNarudzbeController : BaseCRUDController<TattooStudio.Model.StavkeNarudzbe, StavkeNarudzbeSearchObject, StavkeNarudzbeInsertRequest, StavkeNarudzbeUpdateRequest>
     {
         public StavkeNarudzbeController(IStavkeNarudzbeService service)

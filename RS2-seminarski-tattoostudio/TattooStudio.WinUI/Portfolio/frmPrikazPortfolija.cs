@@ -44,26 +44,29 @@ namespace TattooStudio.WinUI.Portfolio
 
         private async void btnSacuvajOpis_Click(object sender, EventArgs e)
         {
-            try
+            if (ValidirajUnos())
             {
-                var request = new PortfolioInsertRequest()
+                try
                 {
-                    Opis = txtOpis.Text,
-                    Uposlenikid = Global.prijavljeniUposlenik.UposlenikId
-                };
-                if (_portfolio != null)
-                {
-                    Global.portfolioPrijavljenogUposlenika = await _portfolioService.Update<Model.Portfolio>(_portfolio.PortfolioId, request);
+                    var request = new PortfolioInsertRequest()
+                    {
+                        Opis = txtOpis.Text,
+                        Uposlenikid = Global.prijavljeniUposlenik.UposlenikId
+                    };
+                    if (_portfolio != null)
+                    {
+                        Global.portfolioPrijavljenogUposlenika = await _portfolioService.Update<Model.Portfolio>(_portfolio.PortfolioId, request);
+                    }
+                    else
+                    {
+                        //request.Uposlenikid = Global.prijavljeniUposlenik.UposlenikId;
+                        await _portfolioService.Insert<Model.Portfolio>(request);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    //request.Uposlenikid = Global.prijavljeniUposlenik.UposlenikId;
-                    await _portfolioService.Insert<Model.Portfolio>(request);
+                    MessageBox.Show(ex.Message);
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
 
@@ -80,6 +83,12 @@ namespace TattooStudio.WinUI.Portfolio
             frmStavkaDetalji frm = new frmStavkaDetalji(item as Model.StavkePortfolium);
             frm.Show();
             this.Close();
+        }
+
+        private bool ValidirajUnos()
+        {
+            return Validator.ObaveznoPolje(txtOpis, err, Validator.poruka) &&
+                Validator.MaxDuzina(txtOpis, err, 100, Validator.maxDuzina);
         }
     }
 }

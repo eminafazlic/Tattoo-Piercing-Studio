@@ -107,7 +107,6 @@ class _SviUposleniciState extends State<SviUposlenici> {
   }
 
   Future<List<dynamic>> GetUposlenici(Zanimanja? selectedItem) async {
-    // ignore: avoid_init_to_null
     Map<String, String>? queryParams = null;
     if (selectedItem != null && selectedItem.zanimanjeId != 0)
       queryParams = {'zanimanjeId': selectedItem.zanimanjeId.toString()};

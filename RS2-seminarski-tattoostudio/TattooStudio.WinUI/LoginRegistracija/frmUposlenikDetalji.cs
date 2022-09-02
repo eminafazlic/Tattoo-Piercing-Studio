@@ -69,7 +69,10 @@ namespace TattooStudio.WinUI.LoginRegistracija
                 txtPutanjaDoSlike.Text = ConvertBytesToString((Byte[])_uposlenik.Slika);
                 cmbSpol.SelectedValue = _uposlenik.SpolId;
                 cmbZanimanje.SelectedValue = _uposlenik.ZanimanjeId;
-                pcbSlika.Image = Image.FromFile(txtPutanjaDoSlike.Text);
+                if (File.Exists(txtPutanjaDoSlike.Text))
+                {
+                    pcbSlika.Image = Image.FromFile(txtPutanjaDoSlike.Text);
+                }
             }
         }
 
@@ -148,7 +151,7 @@ namespace TattooStudio.WinUI.LoginRegistracija
             }
         }
 
-        public static string ConvertBytesToString(byte[] bytes)
+        private string ConvertBytesToString(byte[] bytes)
         {
             string output = String.Empty;
             MemoryStream stream = new MemoryStream(bytes);
@@ -161,7 +164,13 @@ namespace TattooStudio.WinUI.LoginRegistracija
         private bool ValidirajUnos()
         {
             return Validator.ObaveznoPolje(txtIme, err, Validator.poruka) &&
+                Validator.MinDuzina(txtIme, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtIme, err, 20, Validator.minDuzina) &&
+                //Validator.SamoSlova(txtIme, err, Validator.samoSlova) &&
                 Validator.ObaveznoPolje(txtPrezime, err, Validator.poruka) &&
+                Validator.MinDuzina(txtPrezime, err, 3, Validator.minDuzina) &&
+                Validator.MaxDuzina(txtPrezime, err, 30, Validator.minDuzina) &&
+                //Validator.SamoSlova(txtPrezime, err, Validator.samoSlova) &&
                 Validator.ObaveznoPolje(txtKorisnickoIme, err, Validator.poruka) &&
                 Validator.ObaveznoPolje(txtLozinka, err, Validator.poruka) &&
                 Validator.ObaveznoPolje(txtPotvrdaLozinke, err, Validator.poruka) &&

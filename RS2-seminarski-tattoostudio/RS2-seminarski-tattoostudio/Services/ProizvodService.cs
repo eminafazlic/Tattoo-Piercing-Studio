@@ -55,7 +55,7 @@ namespace RS2_seminarski_tattoostudio.Services
             var entity = _context.Proizvods.Include(x => x.TipProizvoda)
                 .Where(x => x.ProizvodId == id)
                 .FirstOrDefaultAsync();
-            return _mapper.Map<TattooStudio.Model.Proizvod>(entity);
+            return _mapper.Map<TattooStudio.Model.Proizvod>(entity.Result);
         }
 
         public override bool Delete(int id)
@@ -76,80 +76,114 @@ namespace RS2_seminarski_tattoostudio.Services
             return false;
         }
 
+        public override TattooStudio.Model.Proizvod Insert(ProizvodInsertRequest request)
+        {
+            var entity = _mapper.Map<Proizvod>(request);
+            _context.Proizvods.Add(entity);
+            _context.SaveChanges();
+            return _mapper.Map<TattooStudio.Model.Proizvod>(entity);
+        }
 
 
 
 
-        private static MLContext mlContext = null;
-        private static ITransformer model = null;
+
+        static object isLocked = new object();
+        static MLContext mlContext = null;
+        static ITransformer model = null;
         public List<TattooStudio.Model.Proizvod> Recommend(int id)
         {
-            if (mlContext == null)
+            lock (isLocked)
             {
-                mlContext = new MLContext();
-                var tmpData = _context.Narudzbas.Include(x => x.StavkeNarudzbes).ToList();
-                var data = new List<ProductEntry>();
-                foreach(var x in tmpData)
+                if (mlContext == null)
                 {
-                    if (x.StavkeNarudzbes.Count > 1)
+                    mlContext = new MLContext();
+
+                    var tmpData = _context.Narudzbas.ToList();
+
+                    var data = new List<ProductEntry>();
+                    List<StavkeNarudzbe> stavkeNarudzbe;
+
+                    foreach (var x in tmpData)
                     {
-                        var distinctItemId = x.StavkeNarudzbes.Select(y => y.ProizvodId).ToList();
-                        distinctItemId.ForEach(y =>
+                        stavkeNarudzbe = _context.StavkeNarudzbes.Where(e => e.NarudzbaId == x.NarudzbaId).ToList();
+                        if (stavkeNarudzbe.Count > 1)
                         {
-                            var relatedItems = x.StavkeNarudzbes.Where(z => z.ProizvodId != y);
-                            foreach(var z in relatedItems)
+                            var distinctItemId = stavkeNarudzbe.Select(y => y.ProizvodId).ToList();
+
+                            distinctItemId.ForEach(y =>
                             {
-                                data.Add(new ProductEntry()
+                                var relatedItems = stavkeNarudzbe.Where(z => z.ProizvodId != y);
+
+                                foreach (var z in relatedItems)
                                 {
-                                    ProductId = (uint)y,
-                                    CoPurchaseProductId = (uint)z.ProizvodId
-                                });
-                            }
-                        });
+                                    data.Add(new ProductEntry()
+                                    {
+                                        ProductID = (uint)y,
+                                        CoPurchaseProductID = (uint)z.ProizvodId,
+                                    });
+                                }
+                            });
+                        }
                     }
+
+                    var traindata = mlContext.Data.LoadFromEnumerable(data);
+
+                    MatrixFactorizationTrainer.Options options = new MatrixFactorizationTrainer.Options();
+                    options.MatrixColumnIndexColumnName = nameof(ProductEntry.ProductID);
+                    options.MatrixRowIndexColumnName = nameof(ProductEntry.CoPurchaseProductID);
+                    options.LabelColumnName = "Label";
+                    options.LossFunction = MatrixFactorizationTrainer.LossFunctionType.SquareLossOneClass;
+                    options.Alpha = 0.01;
+                    options.Lambda = 0.025;
+
+                    options.NumberOfIterations = 100;
+                    options.C = 0.00001;
+
+                    var est = mlContext.Recommendation().Trainers.MatrixFactorization(options);
+
+                    model = est.Fit(traindata);
                 }
-                var trainData = mlContext.Data.LoadFromEnumerable(data);
-                MatrixFactorizationTrainer.Options options = new MatrixFactorizationTrainer.Options();
-                options.MatrixColumnIndexColumnName = nameof(ProductEntry.ProductId);
-                options.MatrixRowIndexColumnName = nameof(ProductEntry.CoPurchaseProductId);
-                options.LossFunction = MatrixFactorizationTrainer.LossFunctionType.SquareLossOneClass;
-                options.Alpha = 0.01;
-                options.Lambda = 0.025;
-                options.NumberOfIterations = 100;
-                options.C = 0.00001;
-                var est = mlContext.Recommendation().Trainers.MatrixFactorization(options);
-                model = est.Fit(trainData);
             }
-            var allItems = _context.Proizvods.Where(x => x.ProizvodId != id);
-            var predictionResult = new List<Tuple<Proizvod, float>>();
-            foreach(var item in allItems)
+
+            List<Database.Proizvod> allItems = new List<Database.Proizvod>();
+            var tmp = _context.Proizvods.Where(x => x.ProizvodId != id);
+            allItems.AddRange(tmp);
+
+            var predictionResult = new List<Tuple<Database.Proizvod, float>>();
+
+            foreach (var item in allItems)
             {
-                var predictionEngine = 
-                    mlContext.Model.CreatePredictionEngine<ProductEntry, Copurchase_prediction>(model);
+                var predictionEngine = mlContext.Model.CreatePredictionEngine<ProductEntry, Copurchase_prediction>(model);
                 var prediction = predictionEngine.Predict(new ProductEntry()
                 {
-                    ProductId = (uint)id,
-                    CoPurchaseProductId = (uint)item.ProizvodId
+                    ProductID = (uint)id,
+                    CoPurchaseProductID = (uint)item.ProizvodId
                 });
-                predictionResult.Add(new Tuple<Proizvod, float>(item, prediction.Score));
+
+                predictionResult.Add(new Tuple<Database.Proizvod, float>(item, prediction.Score));
             }
+
             var finalResult = predictionResult.OrderByDescending(x => x.Item2)
                 .Select(x => x.Item1).Take(3).ToList();
+
             return _mapper.Map<List<TattooStudio.Model.Proizvod>>(finalResult);
         }
+    }
 
-        public class Copurchase_prediction
-        {
-            public float Score { get; set; }
-        }
+    public class Copurchase_prediction
+    {
+        public float Score { get; set; }
+    }
 
-        public class ProductEntry
-        {
-            [KeyType(count: 10)]
-            public uint ProductId { get; set; }
-            [KeyType(count: 10)]
-            public uint CoPurchaseProductId { get; set; }
-            public float Label { get; set; }
-        }
+    public class ProductEntry
+    {
+        [KeyType(count: 10)]
+        public uint ProductID { get; set; }
+
+        [KeyType(count: 10)]
+        public uint CoPurchaseProductID { get; set; }
+
+        public float Label { get; set; }
     }
 }

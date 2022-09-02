@@ -43,7 +43,8 @@ namespace TattooStudio.WinUI.Termin
                         Cijena = int.Parse(txtCijena.Text),
                         IsOdobren = true,
                         IsOtkazan = false,
-                        IsPlacen = false
+                        IsPlacen = false,
+                        Komentar = ""
                     };
                     await _terminService.Update<Model.Termin>(_termin.TerminId, request);
                     Close();

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using RS2_seminarski_tattoostudio.Services;
 using System;
@@ -10,6 +11,7 @@ namespace RS2_seminarski_tattoostudio.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class ZanimanjeController : BaseReadController<TattooStudio.Model.Zanimanje, object>
     {
         public ZanimanjeController(IReadService<TattooStudio.Model.Zanimanje, object> service)

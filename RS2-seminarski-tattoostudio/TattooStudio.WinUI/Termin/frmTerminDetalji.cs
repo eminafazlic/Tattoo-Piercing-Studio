@@ -39,12 +39,14 @@ namespace TattooStudio.WinUI.Termin
         {
             frmOtkaziTermin frm = new frmOtkaziTermin(_termin);
             frm.Show();
+            this.Close();
         }
 
         private void btnOdobri_Click(object sender, EventArgs e)
         {
             frmOdobriTermin frm = new frmOdobriTermin(_termin);
             frm.Show();
+            this.Close();
         }
     }
 }

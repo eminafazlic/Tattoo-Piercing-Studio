@@ -29,6 +29,7 @@ namespace TattooStudio.WinUI.Portfolio
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtOpis = new System.Windows.Forms.RichTextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -36,10 +37,12 @@ namespace TattooStudio.WinUI.Portfolio
             this.btnDodajStavku = new System.Windows.Forms.Button();
             this.btnSacuvajOpis = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvStavkePortfolija)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -119,6 +122,10 @@ namespace TattooStudio.WinUI.Portfolio
             this.panel1.Size = new System.Drawing.Size(657, 460);
             this.panel1.TabIndex = 5;
             // 
+            // err
+            // 
+            this.err.ContainerControl = this;
+            // 
             // frmPrikazPortfolija
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -132,6 +139,7 @@ namespace TattooStudio.WinUI.Portfolio
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStavkePortfolija)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -145,5 +153,6 @@ namespace TattooStudio.WinUI.Portfolio
         private System.Windows.Forms.Button btnSacuvajOpis;
         private System.Windows.Forms.DataGridView dgvStavkePortfolija;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }
