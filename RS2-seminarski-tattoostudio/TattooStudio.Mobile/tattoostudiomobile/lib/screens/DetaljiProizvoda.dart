@@ -21,6 +21,8 @@ class DetaljiProizvoda extends StatelessWidget {
       recommended.map((i)=>Proizvodi.fromJson(i)).toList();
       _recommendedProizvodi = recommended;
     }
+
+    
   }
 
   @override
@@ -87,6 +89,8 @@ class DetaljiProizvoda extends StatelessWidget {
                     height: 40,
                     image: AssetImage('assets/images/korpa.png')),
               )),
+              SizedBox(height: 20,),
+              Text("Broj prodanih proizvoda je"),
               SizedBox(height: 20,),
               Text("Korisnicima se svidjelo još i...", style: TextStyle(color: Colors.blueGrey, fontSize: 16)),
               SizedBox(height: 20,),

@@ -19,6 +19,13 @@ namespace RS2_seminarski_tattoostudio.Services
         {
         }
 
+        public int BrojProdanih(int id)
+        {
+            var brProdanih = _context.StavkeNarudzbes.Where(x => x.ProizvodId == id).Count();
+            return brProdanih;
+        }
+
+
         public override IList<TattooStudio.Model.Proizvod> Get(ProizvodSearchObject search = null)
         {
             var entity = _context.Set<Proizvod>().AsQueryable();

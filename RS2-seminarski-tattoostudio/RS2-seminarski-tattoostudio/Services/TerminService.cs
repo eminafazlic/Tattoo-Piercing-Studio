@@ -15,7 +15,7 @@ namespace RS2_seminarski_tattoostudio.Services
         public TerminService(TattooStudioRSIIContext context, IMapper mapper)
             :base(context, mapper)
         {
-            var neplaceniTermini = _context.Termins.Where(x => x.Datum <= DateTime.Now.AddDays(3) && x.IsPlacen == false && x.IsOtkazan == false);
+            /*var neplaceniTermini = _context.Termins.Where(x => x.Datum <= DateTime.Now.AddDays(3) && x.IsPlacen == false && x.IsOtkazan == false);
             //var neplaceniTermini = _context.Termins.Where(x => ((TimeSpan)(x.Datum - DateTime.Now)).TotalDays < 3 && x.IsPlacen == false);
             foreach(var x in neplaceniTermini)
             {
@@ -23,7 +23,7 @@ namespace RS2_seminarski_tattoostudio.Services
                 x.IsOdobren = false;
                 x.Komentar = "Automatski otkazan jer termin nije bio uplaćen, a do termina je ostalo manje od 3 dana";
             }
-            _context.SaveChanges();
+            _context.SaveChanges();*/
         }
 
         public override IList<TattooStudio.Model.Termin> Get(TerminSearchObject search = null)
